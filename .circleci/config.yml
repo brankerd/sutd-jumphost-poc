@@ -17,6 +17,5 @@ jobs:
              bastion_user: circleci
              bastion_host: bastion-elb-staging-582697253.eu-west-1.elb.amazonaws.com
              bastion_public_key: $sutd-circleci-jumphost
-                
-            # and simply confirm that accessing local port resolves the target (in this case an HTTP server)
-            - run: curl localhost:9001
+        # and simply confirm that accessing local port resolves the target (in this case an HTTP server)
+         - run: curl localhost:9001
