@@ -1,24 +1,13 @@
-explicit_value:            
-description: The bastion host's public key can be declated explicitly, or pulled from an env var instead.
-usage:
+# Use the latest 2.1 version of CircleCI pipeline process engine. See: https://circleci.com/docs/2.0/configuration-reference
 version: 2.1
-    orbs:
-        dmz: eddiewebb/dmz@volatile
-      jobs:
-        build: #this job uses a *public* key file within the repo to be explicitly trusted
-          docker:
-            - image: circleci/node:10
-          steps:
-            - checkout
-            - dmz/open_tunnel:
-                local_port: "9001"
-                target_host: target-host.domain
-                target_port: "80"
-                bastion_user: ubuntu
-                bastion_host: jump-host.domain
-                bastion_public_key: 'ecdsa-sha2-nistp256 AAAAE2VjZHNhLXNoY............'
-                  #    OR 
-                #bastion_public_key: ${THE_VARIABLE_WITH_PUBLIC_KEY_STRING}
-                
-            # and simply confirm that accessing local port resolves the target (in this case an HTTP server)
-            - run: curl localhost:9001
+# Use a package of configuration called an orb.
+orbs:
+  # Declare a dependency on the welcome-orb
+  welcome: circleci/welcome-orb@0.4.1
+# Orchestrate or schedule a set of jobs
+workflows:
+  # Name the workflow "welcome"
+  welcome:
+    # Run the welcome/run job in its own container
+    jobs:
+      - welcome/run
