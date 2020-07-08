@@ -2,23 +2,21 @@ explicit_value:
 description: The bastion host's public key can be declated explicitly, or pulled from an env var instead.
 usage:
 version: 2.1
-    orbs:
-        dmz: eddiewebb/dmz@volatile
-      jobs:
-        build: #this job uses a *public* key file within the repo to be explicitly trusted
-          docker:
-            - image: circleci/node:10
-          steps:
-            - checkout
-            - dmz/open_tunnel:
-                local_port: "9001"
-                target_host: target-host.domain
-                target_port: "80"
-                bastion_user: ubuntu
-                bastion_host: jump-host.domain
-                bastion_public_key: 'ecdsa-sha2-nistp256 AAAAE2VjZHNhLXNoY............'
-                  #    OR 
-                #bastion_public_key: ${THE_VARIABLE_WITH_PUBLIC_KEY_STRING}
+orbs:
+  dmz: eddiewebb/dmz@volatile
+jobs:
+  build: #this job uses a *public* key file within the repo to be explicitly trusted
+  docker:
+     - image: circleci/node:10
+       steps:
+         - checkout
+         - dmz/open_tunnel:
+             local_port: "9001"
+             target_host: artifactory.corp.mendeley.com
+             target_port: "80"
+             bastion_user: circleci
+             bastion_host: bastion-elb-staging-582697253.eu-west-1.elb.amazonaws.com
+             bastion_public_key: $sutd-circleci-jumphost
                 
             # and simply confirm that accessing local port resolves the target (in this case an HTTP server)
             - run: curl localhost:9001
