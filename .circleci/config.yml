@@ -19,3 +19,9 @@ jobs:
              bastion_public_key: $sutd-circleci-jumphost
         # and simply confirm that accessing local port resolves the target (in this case an HTTP server)
          - run: curl localhost:9001
+
+workflows:
+  test_all:
+    jobs:
+    - build
+    
