@@ -12,7 +12,7 @@ jobs:
       - dmz/open_tunnel:
           local_port: "9001"
           target_host: artifactory.corp.mendeley.com
-          target_port: "80"
+          target_port: "443"
           bastion_user: circleci
           bastion_host: bastion-elb-staging-582697253.eu-west-1.elb.amazonaws.com
           bastion_public_key: $sutd-circleci-jumphost
