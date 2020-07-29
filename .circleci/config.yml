@@ -15,7 +15,7 @@ jobs:
           target_port: "443"
           bastion_user: circleci
           bastion_host: bastion-elb-staging-582697253.eu-west-1.elb.amazonaws.com
-          bastion_public_key: $sutd-circleci-jumphost
+          bastion_public_key: 'ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQC/4p1DleRRDRzRe1ayBKuUz7QID9wli8pDvgeVOn4bAMNkKZ3q0Lq97ffln54ti2qvUqZaGxTHKnrliKsbzhRdJAe5PuSFzT1cCrMxTG4zo4VsOKiUNy4yv/mY0z+Etx/9rdVjJk6kABfXKT/iAGpky81Sd0SQxWlz39alJEdjBESP49uqNKrFMCT1zUmdlmnBUHTi0a+uySase2vTRiNIXyezxS2hqUHThJ6MoGtWxlz0J6VQ9LUj78J3Tncnx/vSqkALPEPn+w8sawmB87qZ5LNbQyj8Xg65kjdmGgVT0mlyzIxq8vwS04F6VIk/CLvk0pIS/tvE0Eh30PTi2dqd'
    # and simply confirm that accessing local port resolves the target (in this case an HTTP server)
       - run: curl localhost:9001
 
