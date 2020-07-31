@@ -13,7 +13,7 @@ jobs:
           local_port: "9001"
           target_host: artifactory.corp.mendeley.com
           target_port: "443"
-          bastion_user: centos
+          bastion_user: circleci
           bastion_host: ec2-54-74-253-224.eu-west-1.compute.amazonaws.com
           bastion_public_key: $sutd_circleci_jumphost
    # and simply confirm that accessing local port resolves the target (in this case an HTTP server)
