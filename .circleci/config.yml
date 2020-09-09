@@ -22,7 +22,7 @@ jobs:
           command: |
             echo '127.0.0.1 artifactory.corp.mendeley.com' | sudo tee -a /etc/hosts \
             && cat /etc/hosts
-      - run: curl -k https://localhost:9001/artifactory/webapp/#/home
+      - run: curl -k https://artifactory.corp.mendeley.com:9001/artifactory/webapp/#/home
 
 
 workflows:
