@@ -18,6 +18,25 @@ jobs:
           bastion_public_key: $sutd_circleci_jumphost
    # and simply confirm that accessing local port resolves the target (in this case an HTTP server)
       - run:
+          name: Upgrade curl
+          command: |
+            sudo  apt remove curl \
+            && sudo apt purge curl \
+            && sudo apt-get update \
+            && sudo apt-get install -y libssl-dev autoconf libtool make \
+            && cd /usr/local/src \
+            && sudo rm -rf curl* \
+            && sudo wget https://curl.haxx.se/download/curl-7.70.0.zip \
+            && sudo unzip curl-7.70.0.zip \
+            && cd curl-7.70.0 \
+            && sudo ./buildconf \
+            && sudo autoreconf --install \
+            && sudo ./configure --with-ssl \
+            && sudo make \
+            && sudo make install \
+            && sudo cp /usr/local/bin/curl /usr/bin/curl \
+            && echo 'export LD_LIBRARY_PATH=/usr/local/lib:$LD_LIBRARY_PATH' >> $BASH_ENV
+      - run:
           name: Update host file
           command: |
             echo '127.0.0.1 artifactory.corp.mendeley.com' | sudo tee -a /etc/hosts \
