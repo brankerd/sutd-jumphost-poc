@@ -17,6 +17,11 @@ jobs:
           bastion_host: ec2-54-74-253-224.eu-west-1.compute.amazonaws.com
           bastion_public_key: $sutd_circleci_jumphost
    # and simply confirm that accessing local port resolves the target (in this case an HTTP server)
+      - run:
+          name: Update host file
+          command: |
+            echo '127.0.0.1 artifactory.corp.mendeley.com' | sudo tee -a /etc/hosts \
+            && cat /etc/hosts
       - run: curl -k https://localhost:9001/artifactory/webapp/#/home
 
 
