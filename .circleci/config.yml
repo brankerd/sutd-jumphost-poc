@@ -41,7 +41,7 @@ jobs:
 #          command: |
 #            echo '127.0.0.1 artifactory.corp.mendeley.com' | sudo tee -a /etc/hosts \
 #            && cat /etc/hosts
-      - run: curl --tlsv1.2 -v -k https://localhost:9001/artifactory/webapp/#/home
+      - run: curl -v -k https://localhost:9001/artifactory/webapp/#/home
  #     - run: openssl s_client -cipher ALL -servername artifactory.corp.mendeley.com -connect artifactory.corp.mendeley.com:9001
 
 workflows:
