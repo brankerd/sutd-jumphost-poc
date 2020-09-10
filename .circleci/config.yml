@@ -36,11 +36,11 @@ jobs:
             && sudo make install \
             && sudo cp /usr/local/bin/curl /usr/bin/curl \
             && echo 'export LD_LIBRARY_PATH=/usr/local/lib:$LD_LIBRARY_PATH' >> $BASH_ENV
-#      - run:
-#          name: Update host file
+      - run:
+         name: Update host file
 #          command: |
 #            echo '127.0.0.1 artifactory.corp.mendeley.com' | sudo tee -a /etc/hosts \
-#            && cat /etc/hosts
+            cat /etc/hosts
       - run: curl -v --insecure -k https://localhost:9001/artifactory/webapp/#/home
  #     - run: openssl s_client -cipher ALL -servername artifactory.corp.mendeley.com -connect artifactory.corp.mendeley.com:9001
 
