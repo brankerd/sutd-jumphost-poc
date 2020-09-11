@@ -41,8 +41,7 @@ jobs:
           command: |
             echo '127.0.0.1 artifactory.corp.mendeley.com' | sudo tee -a /etc/hosts \
             cat /etc/hosts
-      - run: echo | openssl s_client -servername artifactory.corp.mendeley.com -connect artifactory.corp.mendeley.com:9001 | sed -ne '/-BEGIN CERTIFICATE-/,/-END CERTIFICATE-/p' > certificate.crt
-      - run: curl -v -k https://artifactory.corp.mendeley.com:9001/artifactory/webapp/#/home -CAfile certificate.crt
+      - run: curl -v -k https://artifactory.corp.mendeley.com:9001/artifactory/webapp/#/home -CAfile /etc/ssl/certs/cert.pem
   #     - run: openssl s_client -cipher ALL -servername artifactory.corp.mendeley.com -connect artifactory.corp.mendeley.com:9001
 
 workflows:
