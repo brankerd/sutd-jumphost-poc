@@ -43,7 +43,7 @@ jobs:
             cat /etc/hosts
    #   - run: curl -v -k https://artifactory.corp.mendeley.com:9001/artifactory/webapp/#/home -CAfile /etc/ssl/certs/cert.pem
   #     - run: openssl s_client -cipher ALL -servername artifactory.corp.mendeley.com -connect artifactory.corp.mendeley.com:9001
-      - run: openssl s_client -showcerts -servername artifactory.corp.mendeley.com -connect artifactory.corp.mendeley.com:443 </dev/null |  sed -ne '/-BEGIN CERTIFICATE-/,/-END CERTIFICATE-/p'
+      - run: openssl s_client -showcerts -servername artifactory.corp.mendeley.com -connect artifactory.corp.mendeley.com:9001 </dev/null |  sed -ne '/-BEGIN CERTIFICATE-/,/-END CERTIFICATE-/p'
 
 workflows:
   test_all:
