@@ -9,14 +9,6 @@ jobs:
       - image: circleci/node:10
     steps:
       - checkout
-      - dmz/open_tunnel:
-          local_port: "9001"
-          target_host: artifactory.corp.mendeley.com
-          target_port: "443"
-          bastion_user: circleci
-          bastion_host: ec2-54-74-253-224.eu-west-1.compute.amazonaws.com
-          bastion_public_key: $sutd_circleci_jumphost
-   # and simply confirm that accessing local port resolves the target (in this case an HTTP server)
       - run:
           name: Upgrade curl
           command: |
@@ -36,6 +28,14 @@ jobs:
             && sudo make install \
             && sudo cp /usr/local/bin/curl /usr/bin/curl \
             && echo 'export LD_LIBRARY_PATH=/usr/local/lib:$LD_LIBRARY_PATH' >> $BASH_ENV
+      - dmz/open_tunnel:
+          local_port: "9001"
+          target_host: artifactory.corp.mendeley.com
+          target_port: "443"
+          bastion_user: circleci
+          bastion_host: ec2-54-74-253-224.eu-west-1.compute.amazonaws.com
+          bastion_public_key: $sutd_circleci_jumphost
+   # and simply confirm that accessing local port resolves the target (in this case an HTTP server)
       - run:
           name: Update host file
           command: |
