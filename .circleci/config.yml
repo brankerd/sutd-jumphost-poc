@@ -39,7 +39,7 @@ jobs:
       - run:
           name: Update host file
           command: |
-            echo '127.0.0.1 artifactory.corp.mendeley.com' | sudo tee -a /etc/hosts \
+            echo '127.0.0.1 rt.artifactory.tio.systems' | sudo tee -a /etc/hosts \
             cat /etc/hosts
       - run: curl -v -k https://rt.artifactory.tio.systems:9001/ui/packages
   #     - run: openssl s_client -cipher ALL -servername artifactory.corp.mendeley.com -connect artifactory.corp.mendeley.com:9001
