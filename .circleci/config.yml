@@ -41,8 +41,9 @@ jobs:
           command: |
             echo '127.0.0.1 rt.artifactory.tio.systems' | sudo tee -a /etc/hosts \
             cat /etc/hosts
-      - run: openssl s_client -showcerts -servername rt.artifactory.tio.systems -connect rt.artifactory.tio.systems:9001 </dev/null |  sed -ne '/-BEGIN CERTIFICATE-/,/-END CERTIFICATE-/p'
-      - run: curl -v -k https://rt.artifactory.tio.systems:9001/ui/packages
+#      - run: openssl s_client -showcerts -servername rt.artifactory.tio.systems -connect rt.artifactory.tio.systems:9001 </dev/null |  sed -ne '/-BEGIN CERTIFICATE-/,/-END CERTIFICATE-/p'
+#      - run: curl -v -k https://rt.artifactory.tio.systems:9001/ui/packages
+      - run: curl -H "Host: rt.artifactory.tio.systems" -L localhost:9001
 #     - run: openssl s_client -cipher ALL -servername artifactory.corp.mendeley.com -connect artifactory.corp.mendeley.com:9001
   #    - run: openssl s_client -showcerts -servername artifactory.corp.mendeley.com -connect artifactory.corp.mendeley.com:9001 </dev/null |  sed -ne '/-BEGIN CERTIFICATE-/,/-END CERTIFICATE-/p'
 
